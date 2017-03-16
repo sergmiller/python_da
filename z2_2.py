@@ -106,7 +106,7 @@ class Life_model(object):
                             ch_x, ch_y = stats[0][_child][0], stats[0][_child][1]
                             self.field[ch_x][ch_y].change_kind(k)
                             self.field[i][j].t_to_rep = -1
-                            stats[0].pop(_child)
+                            stats[0].pop(_child )
 
                         if k == 1:
                             if random.random() < self.p_vict_move and len(stats[0]):
