@@ -29,7 +29,7 @@ class LifeModel(object):
     LEFT_SUITABLE_INDEX = 0
 
     # JUST FOR VISUAL STYLE
-    COLORS = ('', '0;32;40m', '0;31;40m', '0;30;43m')  # red, green, yellow
+    COLORS = ('', '0;32;40m', '0;31;40m', '0;30;43m')  # green, red, yellow
     DIRECTIONS = ((0, 1), (1, 0), (-1, 0), (0, -1))
     CHANGE_COLOR = '\x1b['
     NORMAL_COLOR = CHANGE_COLOR + '0m'
@@ -45,6 +45,9 @@ class LifeModel(object):
             self.time_to_reproduction_predators = time_to_reproduction_predators
             self.time_to_death = time_to_death
             self.change_cell_type(cell_type)
+            self.__make_this_unused()
+
+        def __make_this_unused(self):
             self.used = False
 
         def reset_time_to_reproduction(self):
@@ -58,7 +61,7 @@ class LifeModel(object):
             self.reset_time_to_reproduction()
 
         def update_cell_state(self):
-            self.used = False
+            self.__make_this_unused()
             if self.cell_type in LifeModel.LIVING_CELLS_TYPES:
                 if self.time_to_reproduction:
                     self.time_to_reproduction -= 1
@@ -134,7 +137,7 @@ class LifeModel(object):
     def __move_from(self, row, column, available_directions):
         to_row, to_column = self.__choose_random_direction(available_directions)
         self.field[to_row][to_column] = copy(self.field[row][column])
-        self.field[row][column].change_cell_type(0)
+        self.field[row][column].change_cell_type(LifeModel.CellType.FREE_SPACE)
 
     def __get_stats(self, row, column):
         stats = [[], []]
