@@ -138,13 +138,13 @@ class LifeModel(object):
 
     def __get_stats(self, row, column):
         stats = [[], []]
-        for d in LifeModel.DIRECTIONS:
-            x = row + d[0]
-            y = column + d[1]
-            if self.__check_inside_field(x, y):
-                current_cell_type = self.field[x][y].cell_type
+        for direction in LifeModel.DIRECTIONS:
+            neighbor_x = row + direction[0]
+            neighbor_y = column + direction[1]
+            if self.__check_inside_field(neighbor_x, neighbor_y):
+                current_cell_type = self.field[neighbor_x][neighbor_y].cell_type
                 if current_cell_type in LifeModel.STATS_IMPORTANT_CELLS_TYPES:
-                    stats[current_cell_type].append((x, y))
+                    stats[current_cell_type].append((neighbor_x, neighbor_y))
         return stats
 
     def __update_field_state(self):
