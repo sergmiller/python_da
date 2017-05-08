@@ -1,0 +1,7 @@
+# this is for similar behaviour in python 2 and python 3
+from __future__ import print_function
+
+
+print(list(unique([1, 1, 2, 3, 3])))
+print(list(unique(['a', 'b', 'c', 'c', 'd', 'd', 'd', 'e'])))
+print(list(unique('hello, world')))

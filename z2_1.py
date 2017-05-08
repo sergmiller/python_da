@@ -50,4 +50,4 @@ class Rational(object):
         return Rational(self.x * other.y, self.y * other.x)
 
 
-exec(sys.stdin.read())
+# exec(sys.stdin.read())
